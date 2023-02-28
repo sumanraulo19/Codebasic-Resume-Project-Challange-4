@@ -346,8 +346,11 @@ total_sold_quantity**
 	when 2 then 'Q2'	
 	when 3 then 'Q3'
 	when 4 then 'Q4'
-	end as Quarter ,
-	order by total_sold_quantity asc);
+	end as Quarter ,sum(sold_quantity) as Total_sold_quantity
+	from fact_sales_monthly 
+		where fiscal_year = 2020
+		group by Quarter 
+		order by total_sold_quantity asc);
 
 **OUTPUT:**
   ![Screenshot_20230227_022303](https://user-images.githubusercontent.com/125566876/221837152-26dcf183-6a5d-4adc-94b1-26d3d9892860.png)
