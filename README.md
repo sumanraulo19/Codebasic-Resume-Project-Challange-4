@@ -135,8 +135,7 @@ select* from fact_sales_monthly;
 **1. Provide the list of markets in which customer "Atliq Exclusive" operates its
 business in the APAC region.**
 
-
-   (select distinct (market)
+ (select distinct (market)
 	from dim_customer 
 		where customer = "Atliq Exclusive" and region = "APAC");
 
@@ -190,8 +189,8 @@ product_count**
 
 (SELECT Segment , count(distinct product_code) as Product_count
 	from dim_product
-	group by segment
-	order by product_count desc);
+	  group by segment
+	    order by product_count desc);
 
 
 **OUTPUT :**
@@ -213,24 +212,24 @@ difference**
 
 (with CTE1 AS (select  dp.segment,count(distinct dp.product_code) as product_count_2020
 	from dim_product as dp
-	inner join fact_sales_monthly as ms
-	on dp.product_code = ms.product_code
-	where fiscal_year = 2020
-	group by dp.segment 
-	order by  product_count_2020 DESC),
+	  inner join fact_sales_monthly as ms
+	  on dp.product_code = ms.product_code
+	     where fiscal_year = 2020
+	       group by dp.segment 
+	          order by  product_count_2020 DESC),
 CTE2 AS 
-	(select dp.segment,count(distinct dp.product_code) as product_count_2021
-	from dim_product as dp
-	inner join fact_sales_monthly as ms
-	on dp.product_code = ms.product_code
-	where fiscal_year = 2021 
-	group by dp.segment
-	order by product_count_2021 DESC)	
+(select dp.segment,count(distinct dp.product_code) as product_count_2021
+	 from dim_product as dp
+	     inner join fact_sales_monthly as ms
+	     on dp.product_code = ms.product_code
+	        where fiscal_year = 2021 
+		group by dp.segment
+		order by product_count_2021 DESC)	
 select CTE1.segment, product_count_2020, product_count_2021 , 
 	(product_count_2021-product_count_2020) as Difference
-	from CTE1 INNER join CTE2
-	ON CTE1.SEGMENT = CTE2.SEGMENT
-	ORDER BY Difference  DESC);
+		from CTE1 INNER join CTE2
+		  ON CTE1.SEGMENT = CTE2.SEGMENT
+			ORDER BY Difference  DESC);
              
              
   **OUTPUT :**           
@@ -254,15 +253,15 @@ manufacturing_cost**
 
 ((SELECT p.product_code, product , manufacturing_cost
 	from dim_product as p 
-	INNER JOIN fact_manufacturing_cost as mc
-	ON p.product_code = mc.product_code
-	ORDER BY manufacturing_cost DESC  limit 1)
+		INNER JOIN fact_manufacturing_cost as mc
+		ON p.product_code = mc.product_code
+		  	ORDER BY manufacturing_cost DESC  limit 1)
 UNION
 (SELECT p.product_code, product , manufacturing_cost
 	from dim_product as p 
-	INNER JOIN fact_manufacturing_cost as mc
-	ON p.product_code = mc.product_code
-	ORDER BY mc.manufacturing_cost ASC limit 1));
+		INNER JOIN fact_manufacturing_cost as mc
+		ON p.product_code = mc.product_code
+			ORDER BY mc.manufacturing_cost ASC limit 1));
             
             
  **OUTPUT :**               
@@ -286,12 +285,12 @@ average_discount_percentage**
 
 (select c.customer_code, customer, ROUND((AVG(pre_invoice_discount_pct)*100),2) as Average_discount_Percentage
 		from dim_customer AS c
-		inner join fact_pre_invoice_deductions AS i
-		on c.customer_code = i.customer_code
-		where fiscal_year = 2021 and market = "India"
-		group by customer
-		order by average_discount_percentage DESC
-		LIMIT 5) ;
+			inner join fact_pre_invoice_deductions AS i
+			on c.customer_code = i.customer_code
+				where fiscal_year = 2021 and market = "India"
+					group by customer
+						order by average_discount_percentage DESC
+							LIMIT 5) ;
            
  **OUTPUT :**        
   ![Screenshot_20230227_013846](https://user-images.githubusercontent.com/125566876/221836451-83c63000-a161-4ee8-9024-99c6b870ec43.png)         
