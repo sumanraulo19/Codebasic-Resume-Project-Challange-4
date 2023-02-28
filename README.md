@@ -63,8 +63,9 @@ However, the management noticed that they do not get enough insights to make qui
 
 6. variant: The "variant" column classifies products according to their features, prices, and other characteristics. The column includes variants such as "Standard", 				"Plus", "Premium" that represent different versions of the same product.
 
-**select* from dim_product;
-**
+**select* from dim_product;**
+
+
  ![image](https://user-images.githubusercontent.com/125566876/221822057-ba975612-785f-4c29-82e0-423e6858e4d7.png)
 
 
