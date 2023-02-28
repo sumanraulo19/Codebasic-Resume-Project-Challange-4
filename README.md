@@ -44,7 +44,7 @@ However, the management noticed that they do not get enough insights to make qui
 
 
 
-**select * from dim_customer;**
+select * from dim_customer;
 
  
  ![image](https://user-images.githubusercontent.com/125566876/221821178-33f8ddb7-1b47-4ea7-9e9a-a23958978a73.png)
@@ -63,7 +63,7 @@ However, the management noticed that they do not get enough insights to make qui
 
 6. variant: The "variant" column classifies products according to their features, prices, and other characteristics. The column includes variants such as "Standard", 				"Plus", "Premium" that represent different versions of the same product.
 
-**select* from dim_product;**
+select* from dim_product;
 
 
  ![image](https://user-images.githubusercontent.com/125566876/221822057-ba975612-785f-4c29-82e0-423e6858e4d7.png)
@@ -77,7 +77,7 @@ However, the management noticed that they do not get enough insights to make qui
 3. gross_price: The 'gross_price' column holds the initial price of a product, prior to any reductions or taxes. It is the original selling price of the product.
 
 
-**select* from fact_gross_price;**
+select* from fact_gross_price;
 
 
 ![image](https://user-images.githubusercontent.com/125566876/221822544-9de9d092-26ec-4790-8347-7347a66439fd.png)
@@ -91,7 +91,7 @@ However, the management noticed that they do not get enough insights to make qui
 raw materials, labor, and overhead expenses that are directly associated with the production process.
 
 
-**select* from fact_manufacturing_cost;**
+select* from fact_manufacturing_cost;
 
 ![image](https://user-images.githubusercontent.com/125566876/221823218-1e980270-f821-4489-aa6f-860d077db30d.png)
 
@@ -104,7 +104,7 @@ raw materials, labor, and overhead expenses that are directly associated with th
 3. pre_invoice_discount_pct: The "pre_invoice_discount_pct" column contains the percentage of pre-invoice deductions for each product. Pre-invoice deductions are 
 discounts that are applied to the gross price of a product before the invoice is generated, and typically applied to large orders or 							     long-term contracts.
 
-**select* from fact_pre_invoice_deductions;**
+select* from fact_pre_invoice_deductions;
 
 ![image](https://user-images.githubusercontent.com/125566876/221823782-2399ef92-d3d8-4cb8-847a-89b87166409e.png)
 
@@ -123,7 +123,7 @@ products within a database or system.
 5. fiscal_year: The "fiscal_year" column holds the fiscal period when the sale of a product occurred.
 
 
-**select* from fact_sales_monthly;**
+select* from fact_sales_monthly;
 
 ![image](https://user-images.githubusercontent.com/125566876/221827113-045ac1f1-bd95-48f4-af0a-d96cdd2df848.png)
 
@@ -158,15 +158,15 @@ unique_products_2020
 unique_products_2021
 percentage_chg**
 
-					(with CTE1 as (select count(distinct product_code) AS unique_product_2020
-										from fact_sales_monthly
-											where fiscal_year = 2020 ),
-									CTE2 as (select count(distinct product_code) AS  unique_product_2021
-										from fact_sales_monthly
-											where fiscal_year = 2021)
-									select unique_product_2020 , unique_product_2021,
-									round(((unique_product_2021-unique_product_2020)/(unique_product_2020)*100),2) as 												percentage_chg
-										from CTE1, CTE2);
+	(with CTE1 as (select count(distinct product_code) AS unique_product_2020
+		from fact_sales_monthly
+		  where fiscal_year = 2020 ),
+	CTE2 as (select count(distinct product_code) AS  unique_product_2021
+		from fact_sales_monthly
+		  where fiscal_year = 2021)
+	select unique_product_2020 , unique_product_2021,
+	round(((unique_product_2021-unique_product_2020)/(unique_product_2020)*100),2) as percentage_chg
+	from CTE1, CTE2);
 
 
 
@@ -188,10 +188,10 @@ segment
 product_count**
 
 
-						(SELECT Segment , count(distinct product_code) as Product_count
-											from dim_product
-												group by segment
-												order by product_count desc);
+(SELECT Segment , count(distinct product_code) as Product_count
+	from dim_product
+	group by segment
+	order by product_count desc);
 
 
 **OUTPUT :**
@@ -211,27 +211,26 @@ product_count_2020
 product_count_2021
 difference**
 
-(with CTE1 AS
-											(select  dp.segment,count(distinct dp.product_code) as product_count_2020
-												from dim_product as dp
-													inner join fact_sales_monthly as ms
-													on dp.product_code = ms.product_code
-													where fiscal_year = 2020
-													group by dp.segment 
-													order by  product_count_2020 DESC),
-											CTE2 AS 
-											(select dp.segment,count(distinct dp.product_code) as product_count_2021
-												from dim_product as dp
-													inner join fact_sales_monthly as ms
-													on dp.product_code = ms.product_code
-													where fiscal_year = 2021 
-													group by dp.segment
-													order by product_count_2021 DESC)	
-											select CTE1.segment, product_count_2020, product_count_2021 , 
-											(product_count_2021-product_count_2020) as Difference
-												from CTE1 INNER join CTE2
-													ON CTE1.SEGMENT = CTE2.SEGMENT
-													ORDER BY Difference  DESC);
+(with CTE1 AS (select  dp.segment,count(distinct dp.product_code) as product_count_2020
+	from dim_product as dp
+	inner join fact_sales_monthly as ms
+	on dp.product_code = ms.product_code
+	where fiscal_year = 2020
+	group by dp.segment 
+	order by  product_count_2020 DESC),
+CTE2 AS 
+	(select dp.segment,count(distinct dp.product_code) as product_count_2021
+	from dim_product as dp
+	inner join fact_sales_monthly as ms
+	on dp.product_code = ms.product_code
+	where fiscal_year = 2021 
+	group by dp.segment
+	order by product_count_2021 DESC)	
+select CTE1.segment, product_count_2020, product_count_2021 , 
+	(product_count_2021-product_count_2020) as Difference
+	from CTE1 INNER join CTE2
+	ON CTE1.SEGMENT = CTE2.SEGMENT
+	ORDER BY Difference  DESC);
              
              
   **OUTPUT :**           
@@ -254,16 +253,16 @@ manufacturing_cost**
 
 
 ((SELECT p.product_code, product , manufacturing_cost
-											from dim_product as p 
-												INNER JOIN fact_manufacturing_cost as mc
-												ON p.product_code = mc.product_code
-												ORDER BY manufacturing_cost DESC  limit 1)
-										UNION
-										(SELECT p.product_code, product , manufacturing_cost
-											from dim_product as p 
-												INNER JOIN fact_manufacturing_cost as mc
-												ON p.product_code = mc.product_code
-												ORDER BY mc.manufacturing_cost ASC limit 1));
+	from dim_product as p 
+	INNER JOIN fact_manufacturing_cost as mc
+	ON p.product_code = mc.product_code
+	ORDER BY manufacturing_cost DESC  limit 1)
+UNION
+(SELECT p.product_code, product , manufacturing_cost
+	from dim_product as p 
+	INNER JOIN fact_manufacturing_cost as mc
+	ON p.product_code = mc.product_code
+	ORDER BY mc.manufacturing_cost ASC limit 1));
             
             
  **OUTPUT :**               
@@ -286,13 +285,13 @@ average_discount_percentage**
 
 
 (select c.customer_code, customer, ROUND((AVG(pre_invoice_discount_pct)*100),2) as Average_discount_Percentage
-										from dim_customer AS c
-											inner join fact_pre_invoice_deductions AS i
-											on c.customer_code = i.customer_code
-											where fiscal_year = 2021 and market = "India"
-											group by customer
-											order by average_discount_percentage DESC
-											LIMIT 5) ;
+		from dim_customer AS c
+		inner join fact_pre_invoice_deductions AS i
+		on c.customer_code = i.customer_code
+		where fiscal_year = 2021 and market = "India"
+		group by customer
+		order by average_discount_percentage DESC
+		LIMIT 5) ;
            
  **OUTPUT :**        
   ![Screenshot_20230227_013846](https://user-images.githubusercontent.com/125566876/221836451-83c63000-a161-4ee8-9024-99c6b870ec43.png)         
@@ -316,16 +315,16 @@ Gross sales Amount**
 
 
 (select date_format(date, '%M') AS MONTH , year(DATE) AS YEAR, 
-                                                ROUND(SUM(gross_price * sold_quantity),2) AS Gross_sales_amount
-												from (select c.customer_code, customer ,date , product_code , sold_quantity
-														From dim_customer as c
-															inner join fact_sales_monthly as s
-															on  c.customer_code = s.customer_code) as h
-															inner join fact_gross_price as g
-															on h.product_code = g.product_code
-															WHERE customer = 'Atliq Exclusive'
-															group by MONTH,YEAR
-															ORDER BY YEAR );
+       ROUND(SUM(gross_price * sold_quantity),2) AS Gross_sales_amount
+from (select c.customer_code, customer ,date , product_code , sold_quantity
+	From dim_customer as c
+	inner join fact_sales_monthly as s
+	on  c.customer_code = s.customer_code) as h
+	inner join fact_gross_price as g
+	on h.product_code = g.product_code
+	WHERE customer = 'Atliq Exclusive'
+	group by MONTH,YEAR
+	ORDER BY YEAR );
 
 **OUTPUT:**
 ![Screenshot_20230227_015307](https://user-images.githubusercontent.com/125566876/221836805-8a481002-a090-44e4-b18c-35c41b591716.png)
@@ -344,13 +343,12 @@ total_sold_quantity**
 
 
 (select case quarter(date)
-														when 1 then 'Q1'
-														when 2 then 'Q2'
-														when 3 then 'Q3'
-														when 4 then 'Q4'
-														end as Quarter ,
-
-														order by total_sold_quantity asc);
+	when 1 then 'Q1'
+	when 2 then 'Q2'	
+	when 3 then 'Q3'
+	when 4 then 'Q4'
+	end as Quarter ,
+	order by total_sold_quantity asc);
 
 **OUTPUT:**
   ![Screenshot_20230227_022303](https://user-images.githubusercontent.com/125566876/221837152-26dcf183-6a5d-4adc-94b1-26d3d9892860.png)
@@ -366,17 +364,17 @@ gross_sales_mln
 percentage**
 
 (with CTE As ( select channel , round(sum(gross_price * sold_quantity)/1000000,2) as Gross_sales_mln
-														from dim_customer as c
-															inner join fact_sales_monthly as s
-															on c.customer_code = s. customer_code
-															inner join fact_gross_price as g
-															on g.product_code = s.product_code
-															where s.fiscal_year = 2021 and g.fiscal_year = 2021
-															group by channel
-															order by Gross_sales_mln desc)
-												select channel , Gross_sales_mln, 
-                                                round(((Gross_sales_mln /(select Sum(Gross_sales_mln)from CTE ))*100),2) as Percentage
-														from CTE );
+	from dim_customer as c
+	inner join fact_sales_monthly as s
+	on c.customer_code = s. customer_code
+	inner join fact_gross_price as g
+	on g.product_code = s.product_code
+	where s.fiscal_year = 2021 and g.fiscal_year = 2021
+	group by channel
+	order by Gross_sales_mln desc)
+select channel , Gross_sales_mln, 
+     round(((Gross_sales_mln /(select Sum(Gross_sales_mln)from CTE ))*100),2) as Percentage
+	from CTE );
               
 **OUTPUT:** 
 ![Screenshot_20230227_023206](https://user-images.githubusercontent.com/125566876/221837462-d62f09c9-8320-4058-a267-6c4f66b19fd7.png)
@@ -399,18 +397,18 @@ total_sold_quantity
 rank_order**
 
    (with CTE  as (select Division, p.product_code, product,sum(sold_quantity) as Total_sold_quantity
-												from dim_product as p
-													inner join fact_sales_monthly as s
-													on p.product_code = s.product_code
-													where fiscal_year = 2021 
-													group by product),
+	from dim_product as p
+	inner join fact_sales_monthly as s
+	on p.product_code = s.product_code
+	where fiscal_year = 2021 
+	group by product),
 
-										CTE2 AS (select Division , product_code , Product, Total_sold_quantity , 
-										dense_rank () over (partition by Division order by Total_sold_quantity desc) Rank_order
-										from CTE)
+CTE2 AS (select Division , product_code , Product, Total_sold_quantity , 
+	dense_rank () over (partition by Division order by Total_sold_quantity desc) Rank_order
+	from CTE)
 
-										select * from CTE2
-											where Rank_order <3);
+select * from CTE2
+	where Rank_order <3);
            
   **OUTPUT:**
   ![Screenshot_20230227_024111](https://user-images.githubusercontent.com/125566876/221837756-82ea00cf-31a4-4d3c-a71f-37d08d487c26.png)
