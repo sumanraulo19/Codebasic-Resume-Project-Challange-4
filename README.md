@@ -354,7 +354,7 @@ total_sold_quantity**
   ![Screenshot_20230227_022303](https://user-images.githubusercontent.com/125566876/221837152-26dcf183-6a5d-4adc-94b1-26d3d9892860.png)
 
 
-**CONVERSION OF OUTPUT**
+**CONVERSION OF OUTPUT YO VISUALS**
 
 ![Screenshot_20230227_024202](https://user-images.githubusercontent.com/125566876/221837816-9d1ccf0b-7f4a-4269-836d-043d65f46ad2.png)
 
