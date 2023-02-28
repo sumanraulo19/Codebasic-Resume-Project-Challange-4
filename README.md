@@ -201,7 +201,7 @@ product_count**
 
 **Conversion of Output to visual**
 
-![Screenshot_20230227_012707](https://user-images.githubusercontent.com/125566876/221834710-04afb214-11fa-4f94-a556-c2a11e3bd799.png)
+![Screenshot_20230227_122833](https://user-images.githubusercontent.com/125566876/221838825-642fe5da-184e-4503-8de6-ed008ca11435.png)
 
 
 **4. Follow-up: Which segment had the most increase in unique products in
@@ -242,7 +242,7 @@ difference**
 
 **Conversion of Output to visual**
 
-![Screenshot_20230227_013948](https://user-images.githubusercontent.com/125566876/221836614-b50e5eea-b33b-40a8-b5e4-ae534650365f.png)
+![Screenshot_20230227_125122](https://user-images.githubusercontent.com/125566876/221839177-43afbadd-7158-45ee-9a85-293388f2e364.png)
 
 
 
@@ -273,7 +273,9 @@ manufacturing_cost**
             
 **Conversion of Output to visual**            
             
-![Screenshot_20230227_021531](https://user-images.githubusercontent.com/125566876/221836891-4dbfe94f-380b-43de-9c70-68e63c643367.png)
+
+![Screenshot_20230227_012707](https://user-images.githubusercontent.com/125566876/221834710-04afb214-11fa-4f94-a556-c2a11e3bd799.png)
+
 
 **6. Generate a report which contains the top 5 customers who received an
 average high pre_invoice_discount_pct for the fiscal year 2021 and in the
@@ -300,7 +302,8 @@ average_discount_percentage**
 **Conversion of Output to visual**            
            
 
-![Screenshot_20230227_022355](https://user-images.githubusercontent.com/125566876/221837200-3420b82a-917a-4592-ade6-7d8cc5e33d2d.png)
+
+![Screenshot_20230227_013948](https://user-images.githubusercontent.com/125566876/221836614-b50e5eea-b33b-40a8-b5e4-ae534650365f.png)
 
 
 **7. Get the complete report of the Gross sales amount for the customer “Atliq
@@ -334,7 +337,6 @@ Gross sales Amount**
 
 ![Screenshot_20230227_023315](https://user-images.githubusercontent.com/125566876/221837568-7a07eeac-921a-4c4e-96f1-aeb38c2bfc65.png)
 
-
 **8. In which quarter of 2020, got the maximum total_sold_quantity? The final
 output contains these fields sorted by the total_sold_quantity,
 Quarter
@@ -355,8 +357,7 @@ total_sold_quantity**
 
 
 **CONVERSION OF OUTPUT YO VISUALS**
-
-![Screenshot_20230227_024202](https://user-images.githubusercontent.com/125566876/221837816-9d1ccf0b-7f4a-4269-836d-043d65f46ad2.png)
+![Screenshot_20230227_022355](https://user-images.githubusercontent.com/125566876/221837200-3420b82a-917a-4592-ade6-7d8cc5e33d2d.png)
 
 **9. Which channel helped to bring more gross sales in the fiscal year 2021
 and the percentage of contribution? The final output contains these fields,
@@ -383,7 +384,8 @@ percentage**
 
 **CONVERSION OF OUTPUT**
 
-![Screenshot_20230227_122833](https://user-images.githubusercontent.com/125566876/221838825-642fe5da-184e-4503-8de6-ed008ca11435.png)
+
+![Screenshot_20230227_021531](https://user-images.githubusercontent.com/125566876/221836891-4dbfe94f-380b-43de-9c70-68e63c643367.png)
 
 
 **10. Get the Top 3 products in each division that have a high
@@ -415,7 +417,8 @@ rank_order**
  
 **CONVERSION OF OUTPUT OF VISUALS**
 
-![Screenshot_20230227_125122](https://user-images.githubusercontent.com/125566876/221839177-43afbadd-7158-45ee-9a85-293388f2e364.png)
+
+![Screenshot_20230227_024202](https://user-images.githubusercontent.com/125566876/221837816-9d1ccf0b-7f4a-4269-836d-043d65f46ad2.png)
 
 
 
