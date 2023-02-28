@@ -45,6 +45,7 @@ However, the management noticed that they do not get enough insights to make qui
 
 
 **select * from dim_customer;**
+
  
  ![image](https://user-images.githubusercontent.com/125566876/221821178-33f8ddb7-1b47-4ea7-9e9a-a23958978a73.png)
 
@@ -135,10 +136,12 @@ business in the APAC region.**
 
 
    (select distinct (market)
-									from dim_customer 
-										where customer = "Atliq Exclusive" and region = "APAC");
+	from dim_customer 
+		where customer = "Atliq Exclusive" and region = "APAC");
 
 **OUTPUT :**
+
+
 
 ![Screenshot_20230226_073246](https://user-images.githubusercontent.com/125566876/221830426-77ad10ee-2303-4170-96a1-87f79878ad51.png)
 
@@ -154,14 +157,14 @@ unique_products_2020
 unique_products_2021
 percentage_chg**
 
-(with CTE1 as (select count(distinct product_code) AS unique_product_2020
+					(with CTE1 as (select count(distinct product_code) AS unique_product_2020
 										from fact_sales_monthly
 											where fiscal_year = 2020 ),
 									CTE2 as (select count(distinct product_code) AS  unique_product_2021
 										from fact_sales_monthly
 											where fiscal_year = 2021)
 									select unique_product_2020 , unique_product_2021,
-									round(((unique_product_2021-unique_product_2020)/(unique_product_2020)*100),2) as percentage_chg
+									round(((unique_product_2021-unique_product_2020)/(unique_product_2020)*100),2) as 												percentage_chg
 										from CTE1, CTE2);
 
 
@@ -184,7 +187,7 @@ segment
 product_count**
 
 
-(SELECT Segment , count(distinct product_code) as Product_count
+						(SELECT Segment , count(distinct product_code) as Product_count
 											from dim_product
 												group by segment
 												order by product_count desc);
