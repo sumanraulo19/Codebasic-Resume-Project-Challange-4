@@ -307,6 +307,8 @@ average_discount_percentage**
 				LIMIT 5) ;
            
  **OUTPUT :**        
+ 
+ 
   ![Screenshot_20230227_013846](https://user-images.githubusercontent.com/125566876/221836451-83c63000-a161-4ee8-9024-99c6b870ec43.png)         
   
        
@@ -342,14 +344,15 @@ Gross sales Amount**
 	          ORDER BY YEAR );
 
 **OUTPUT:**
+
+
 ![Screenshot_20230227_015307](https://user-images.githubusercontent.com/125566876/221836805-8a481002-a090-44e4-b18c-35c41b591716.png)
 
 
 
 **CONVERSION OF OUTPUT TO VISUAL**
 
-
-![Screenshot_20230227_023315](https://user-images.githubusercontent.com/125566876/221837568-7a07eeac-921a-4c4e-96f1-aeb38c2bfc65.png)
+![Screenshot_20230227_021531](https://user-images.githubusercontent.com/125566876/221836891-4dbfe94f-380b-43de-9c70-68e63c643367.png)
 
 **8. In which quarter of 2020, got the maximum total_sold_quantity? The final
 output contains these fields sorted by the total_sold_quantity,
@@ -371,11 +374,17 @@ total_sold_quantity**
 		order by total_sold_quantity asc);
 
 **OUTPUT:**
+
+
   ![Screenshot_20230227_022303](https://user-images.githubusercontent.com/125566876/221837152-26dcf183-6a5d-4adc-94b1-26d3d9892860.png)
 
 
 **CONVERSION OF OUTPUT YO VISUALS**
+
+
 ![Screenshot_20230227_022355](https://user-images.githubusercontent.com/125566876/221837200-3420b82a-917a-4592-ade6-7d8cc5e33d2d.png)
+
+
 
 **9. Which channel helped to bring more gross sales in the fiscal year 2021
 and the percentage of contribution? The final output contains these fields,
@@ -401,13 +410,16 @@ percentage**
 		from CTE );
               
 **OUTPUT:** 
+
+
 ![Screenshot_20230227_023206](https://user-images.githubusercontent.com/125566876/221837462-d62f09c9-8320-4058-a267-6c4f66b19fd7.png)
 
 
 **CONVERSION OF OUTPUT**
 
 
-![Screenshot_20230227_021531](https://user-images.githubusercontent.com/125566876/221836891-4dbfe94f-380b-43de-9c70-68e63c643367.png)
+![Screenshot_20230227_023315](https://user-images.githubusercontent.com/125566876/221837568-7a07eeac-921a-4c4e-96f1-aeb38c2bfc65.png)
+
 
 
 **10. Get the Top 3 products in each division that have a high
@@ -439,7 +451,11 @@ rank_order**
 		where Rank_order <3);
            
   **OUTPUT:**
+  
+  
   ![Screenshot_20230227_024111](https://user-images.githubusercontent.com/125566876/221837756-82ea00cf-31a4-4d3c-a71f-37d08d487c26.png)
+ 
+ 
  
 **CONVERSION OF OUTPUT OF VISUALS**
 
